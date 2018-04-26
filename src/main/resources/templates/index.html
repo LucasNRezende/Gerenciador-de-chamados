@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}"></link>
+
+    <title>Página Inicial </title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+<body>
+	
+	<div class="container">
+		<div class="header clearfix">
+	        <h2 class="text-muted">Página Inicial</h2>
+	      </div>
+	
+		<div th:include="menu">
+		</div>
+	
+		<div class="col-md-9">
+			<div class="jumbotron">
+				<div class="row">
+					<h2>Bem vindo usuário!</h2>
+					<img class="img-200-200" src="/img/1.jpg" width="740"/>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

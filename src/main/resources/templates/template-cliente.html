@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" th:href="@{/img/favicon.png}"></link>
+
+    <title>Cliente </title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+ <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <h3 class="text-muted">Cliente </h3>
+      </div>
+
+		<div th:include="menu">
+		</div>
+
+		<div class="col-md-9">
+	      <div class="jumbotron">
+	      	<div class="col-md-12" th:if="${sucesso != null}">
+				<div class="alert alert-success">
+					<span th:text="${sucesso}"></span>
+				</div>
+			</div>
+			<div class="col-md-12" th:if="${erro != null}">
+				<div class="alert alert-danger">
+					<span th:text="${erro}"></span>
+				</div>
+			</div>
+	       	<div class="row">
+	       		<div class="col-md-12">
+	       			<a th:href="@{/clientes/cadastro}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Novo</a>
+	       		</div>
+	       	</div>
+	       	<br />
+	       	<div class="row">
+	       		<form th:action="@{/clientes/pesquisar}" method="get">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="razaosocial">Razão Social</label> 
+							<input type="text" class="form-control" id="razaosocial" name="razaosocial" placeholder="Informe a Razão Social"></input>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>
+					</div>
+				</form>
+	       	</div>
+	       	<br />
+	       	<h2>Clientes </h2>
+	       	<div class="table-responsive">
+		       	<table class="table table-bordered table-striped">
+		       		<thead>
+		       			<th>Código</th>
+		       			<th>Razão Social</th>
+		       			<th>Cidade</th>
+		       			<th>Ações</th>
+		       		</thead>
+		       		<tbody>
+		       			<tr th:each="cli : ${clientes}" th:object="${cli}">
+		       				<td th:text="*{id}"></td>
+		       				<td th:text="*{razaosocial}"></td>
+		       				<td th:text="*{cidade}"></td>
+		       				<td><a class="btn btn-success" th:href="@{/clientes/cadastro} + '?id=' + *{id}"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+		       					<a class="btn btn-primary" th:href="@{/clientes/cadastro} + '?id=' + *{id}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+		       					<a class="btn btn-danger" th:href="@{/clientes/remover} + '?id=' + *{id}"><span class="glyphicon glyphicon-trash"></span> Remover</a></td>
+		       			</tr>
+		       		</tbody>
+				</table>
+			</div>
+	      </div>
+      </div>
+    </div>
+  </body>
+</html>

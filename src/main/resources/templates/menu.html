@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="menu" class="col-md-3">
+		<div class="jumbotron">
+			<div class="row">
+				<h2 class="text-center">Menu</h2>
+				<a th:href="@{/}"><span class="glyphicon glyphicon-home"></span> Inicio</a><br/>
+				<a th:href="@{/usuarios}"><span class="glyphicon glyphicon-user"></span>Usuarios</a><br/>
+				<a th:href="@{/softwares}"><span class="glyphicon glyphicon-level-up"></span> Softwares</a><br/>
+				<a th:href="@{/clientes}"><span class="glyphicon glyphicon-blackboard"></span> Clientes</a><br/>
+				<a th:href="@{/atendimentos}"><span class="glyphicon glyphicon-earphone"></span> Atendimento</a><br/>
+				<a th:href="@{/chamados}"><span class="glyphicon glyphicon-book"></span> Chamados</a><br/>
+				<a th:href="@{/relatorios}"><span class="glyphicon glyphicon-list-alt"></span>Relatorios</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

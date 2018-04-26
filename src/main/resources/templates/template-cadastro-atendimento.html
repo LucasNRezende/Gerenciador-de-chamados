@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="shortcut icon" th:href="@{/img/favicon.png}"></link>
+
+<title>Cadastro de Atendimento</title>
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+<body>
+
+	<div class="container">
+		<div class="header clearfix">
+			<h3 class="text-muted">Cadastro de Atendimento</h3>
+		</div>
+
+		<div th:include="menu"></div>
+
+		<div class="col-md-9">
+			<div class="jumbotron">
+				<div class="col-md-12" th:if="${sucesso != null}">
+					<div class="alert alert-success">
+						<span th:text="${sucesso}"></span>
+					</div>
+				</div>
+
+				<div class="col-md-12" th:if="${erro != null}">
+					<div class="alert alert-danger">
+						<span th:text="${erro}"></span>
+					</div>
+				</div>
+				<form th:action="@{/atendimentos/cadastro/salvar}"
+					th:object="${atendimento}" method="post">
+					<input type="hidden" th:field="*{id}"></input>
+					<div class="row">
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="cliente">Cliente</label>
+								<select class="form-control" th:field="*{cliente}" required="required">
+									<option value="">Selecione o cliente</option>
+									<option th:each="cli : ${clientes}"
+										th:value="${cli.id}" th:text="${cli.razaosocial}"/>
+								</select>
+							</div>
+							</div>
+								<div class="col-md-4">
+							<div class="form-group">
+								<label for="software">Software</label>
+								<select class="form-control" th:field="*{software}" required="required">
+									<option value="">Selecione o software</option>
+									<option th:each="sof : ${softwares}"
+										th:value="${sof.id}" th:text="${sof.nome}"/>
+								</select>
+							</div>
+							</div>
+
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="estado">Tipo Atendimento</label>
+	
+								<!-- <input type="text"
+										class="form-control" id="tipoatendimento" name="tipoatendimento"
+										placeholder="Informe o tipo do Atendimento" th:field="*{tipoatendimento}" required="required"></input> -->
+	
+								<select class="form-control" name="tipoatendimento" id="tipoatendimento"
+									placeholder="Informe o Tipo do Atendimento" th:field="*{tipoatendimento}"
+									required="required">
+									<option value="  ">Selecione o Tipo do Atendimento</option>
+									<option value="Dúvida">Dúvida</option>
+									<option value="Problema">Problema</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+							<label for="nome">Data Atendimento</label> <input type="date"
+									class="form-control" id="dataatendimento"
+									name="dataatendimento" placeholder="Informe do Atendimento"
+									th:field="*{dataatendimento}" required="required"></input>
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+							<div class="form-group">
+								<label for="versao">Assunto</label> <input type="text"
+									class="form-control" id="assunto" name="assunto"
+									placeholder="Informe o Assunto" th:field="*{assunto}"
+									required="required"></input>
+							
+							</div>
+						</div>
+						
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="usuario">Usuario</label>
+								<select class="form-control" th:field="*{usuario}" required="required">
+									<option value="">Selecione o Usuario</option>
+									<option th:each="usu : ${usuarios}"
+										th:value="${usu.id}" th:text="${usu.nome}"/>
+								</select>
+							</div>
+							</div>
+
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group">
+								<div class="row">
+									<label for="estado">Registro do Atendimento</label>
+									<div class="col-md-10">
+										<textarea id="registro" name="registro" minlength="10"
+											class="textInput required rounded" rows="10" cols="100"
+											style="border-radius: 4px;" th:field="*{registro}"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6">
+							<button type="submit" class="btn btn-success">
+								<span class="glyphicon glyphicon-ok"></span> Finalizar
+							</button>
+						</div>
+						<div class="col-md-6">
+							<a th:href="@{/atendimentos}" class="btn btn-danger"><span
+								class="glyphicon glyphicon-remove-sign"></span> Cancelar </a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

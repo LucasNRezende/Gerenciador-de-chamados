@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="shortcut icon" th:href="@{/img/favicon.png}"></link>
+
+<title>Cadastro de Usuario</title>
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
+</head>
+<body>
+
+	<div class="container">
+		<div class="header clearfix">
+			<h3 class="text-muted">Cadastro de Usuario</h3>
+		</div>
+
+		<div th:include="menu"></div>
+
+		<div class="col-md-9">
+			<div class="jumbotron">
+				<div class="row">
+					<div class="col-md-12" th:if="${sucesso != null}">
+						<div class="alert alert-success">
+							<span th:text="${sucesso}"></span>
+						</div>
+					</div>
+
+					<div class="col-md-12" th:if="${erro != null}">
+						<div class="alert alert-danger">
+							<span th:text="${erro}"></span>
+						</div>
+					</div>
+					<form th:action="@{/usuarios/cadastro/salvar}"
+						th:object="${usuario}" method="post">
+						<input type="hidden" th:field="*{id}"></input>
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="nome">Nome</label> <input type="text"
+									class="form-control" id="nome" name="nome"
+									placeholder="Informe o nome" th:field="*{nome}"
+									required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="rg">RG</label> <input type="text"
+									class="form-control" id="rg" name="rg"
+									placeholder="Informe o RG" th:field="*{rg}" required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="cpf">CPF</label> <input type="text"
+									class="form-control" id="cpf" name="cpf"
+									placeholder="Informe o CPF" th:field="*{cpf}"
+									required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="datadenascimento">Data de Nascimento</label> <input
+									type="date" class="form-control" id="datadenascimento"
+									name="datadenascimento"
+									placeholder="Informe a data de nascimento"
+									th:field="*{datadenascimento}" required="required"></input>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="email">e-mail</label> <input type="email"
+									class="form-control" id="email" name="email"
+									placeholder="Informe o e-mail" th:field="*{email}"
+									required="required"></input>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="endereco">Endereço</label> <input type="text"
+									class="form-control" id="endereco" name="endereco"
+									placeholder="Informe o endereço" th:field="*{endereco}"
+									required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="cidade">Cidade</label> <input type="text"
+									class="form-control" id="cidade" name="cidade"
+									placeholder="Informe a cidade" th:field="*{cidade}"
+									required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="estado">Estado</label>
+
+								<!-- <input type="text"
+									class="form-control" id="estado" name="estado"
+									placeholder="Informe o estado" th:field="*{estado}" required="required"></input> -->
+
+								<select class="form-control" name="estado" id="estado"
+									placeholder="Informe o estado" th:field="*{estado}"
+									required="required">
+									<option value="  ">Selecione o estado</option>
+									<option value="AC">Acre</option>
+									<option value="AL">Alagoas</option>
+									<option value="AP">Amapá</option>
+									<option value="AM">Amazonas</option>
+									<option value="BA">Bahia</option>
+									<option value="CE">Ceará</option>
+									<option value="DF">Distrito Federal</option>
+									<option value="ES">Espírito Santo</option>
+									<option value="GO">Goiás</option>
+									<option value="MA">Maranhão</option>
+									<option value="MT">Mato Grosso</option>
+									<option value="MS">Mato Grosso do Sul</option>
+									<option value="MG">Minas Gerais</option>
+									<option value="PA">Pará</option>
+									<option value="PB">Paraíba</option>
+									<option value="PR">Paraná</option>
+									<option value="PE">Pernambuco</option>
+									<option value="PI">Piauí</option>
+									<option value="RJ">Rio de Janeiro</option>
+									<option value="RN">Rio Grande do Norte</option>
+									<option value="RS">Rio Grande do Sul</option>
+									<option value="RO">Rondônia</option>
+									<option value="RR">Roraima</option>
+									<option value="SC">Santa Catarina</option>
+									<option value="SP">São Paulo</option>
+									<option value="SE">Sergipe</option>
+									<option value="TO">Tocantins</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="telresidencial">Telefone Residencial</label> <input
+									type="text" class="form-control" id="telresidencial"
+									name="telresidencial"
+									placeholder="Informe o telefone residencial"
+									th:field="*{telresidencial}" required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="telcelular">Telefone Celular</label> <input
+									type="text" class="form-control" id="telcelular"
+									name="telcelular" placeholder="Informe o telefone celular"
+									th:field="*{telcelular}" required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="cargo">Cargo</label> <input
+									type="text" class="form-control" id="cargo"
+									name="cargo" placeholder="Informe o Cargo"
+									th:field="*{cargo}" required="required"></input>
+							</div>
+						</div>
+											<div class="col-md-4">
+						<div class="form-group">
+							<label for="tipousuario">Tipo Usuario</label>
+
+							<!-- <input type="text"
+									class="form-control" id="tipousuario" name="tipousuario"
+									placeholder="Informe o Tipo do Usuario" th:field="*{cargo}" required="required"></input> -->
+
+							<select class="form-control" name="tipousuario"
+								id="tipousuario" th:field="*{tipousuario}"
+								required="required">
+								<option value="  ">Selecione o Tipo de Usuario</option>
+								<option value="  ">Administrador</option>
+								<option value="  ">Analista de Suporte</option>
+								<option value="  ">Analaista de Chamado</option>
+								<option value="  ">Desenvolvedor</option>
+															
+							</select>
+						</div>
+					</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="login">Login</label> <input type="text"
+									class="form-control" id="login" name="login"
+									placeholder="Informe o login" th:field="*{login}"
+									required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="senha">Senha</label> <input type="password"
+									class="form-control" id="senha" name="senha"
+									placeholder="Informe a senha" th:value="*{senha}"
+									required="required"></input>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<button type="submit" class="btn btn-success">
+								<span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+							</button>
+						</div>
+						<div class="col-md-6">
+							<a th:href="@{/usuarios}" class="btn btn-primary"><span
+								class="glyphicon glyphicon-arrow-left"></span> Voltar </a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
